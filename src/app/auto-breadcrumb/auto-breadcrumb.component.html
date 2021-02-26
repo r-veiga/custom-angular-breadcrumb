@@ -1,0 +1,22 @@
+<style>
+    .separator {
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+  
+    .clickable {
+      cursor: pointer;
+    }
+  
+  </style>
+  
+  
+  <div>
+    <span *ngFor="let step of steps; let i = index; last as isLast">
+      <span *ngIf="isLast; else clickable">{{ step.text }}</span>
+      <ng-template #clickable>
+        <span class="clickable" (click)="onCrumbClick(i, step.order)">{{ prefix }}{{ step.text }}</span>
+      </ng-template>
+      <span class="separator" *ngIf="!isLast">/</span>
+    </span>
+  </div>
